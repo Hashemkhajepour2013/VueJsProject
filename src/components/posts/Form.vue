@@ -18,7 +18,20 @@
         {{ form.bodyErrorText }}
       </div>
     </div>
-
+    <div v-for="uservalue in users" :key="uservalue.id">asdfasdf</div>
+    <!-- <div class="mb-3">
+      <select
+        class="form-select"
+        id="inputGroupSelect03"
+        aria-label="Example select with button addon"
+        v-model.lazy="form.userId"
+      >
+        <option v-for="user in users" :key="user.id" value="user.name">
+          asdf
+        </option>
+       
+      </select>
+    </div> -->
     <button type="submit" class="btn btn-dark" :disabled="buttonLoading">
       <div
         v-if="buttonLoading"
@@ -31,7 +44,10 @@
 </template>
 
 <script>
+import axios from "axios";
+import { ref } from "vue";
 import { reactive } from "vue";
+
 
 export default {
   props: {
@@ -40,10 +56,27 @@ export default {
     post: Object,
   },
   setup(props, { emit }) {
+    
+    const users = ref([]);
+    
+    function getUsers() {
+      axios
+        .get("https://localhost:7193/api/v1/User/get-all-for-add-post")
+        .then(function (response) {
+          users.value = response.data;
+          console.log(users.value)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+    getUsers();
+
     const form = reactive({
       title: "",
       titleErrorText: "",
       body: "",
+      userId: "",
       bodyErrorText: "",
     });
 
@@ -70,13 +103,11 @@ export default {
       if (form.title !== "" && form.body !== "") {
         emit("formData", form);
       }
-    }
+    }  
 
     return { form, validate };
   },
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

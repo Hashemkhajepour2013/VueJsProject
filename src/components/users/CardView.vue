@@ -4,7 +4,7 @@
       <router-link :to="{ name : 'userId' , params: { id: user.id } }">{{ user.name }}</router-link>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">username : {{user.username}}</li>
+      <li class="list-group-item">username : {{user.userName}}</li>
       <li class="list-group-item">Email : {{user.email}}</li>
       <li class="list-group-item">Phone : {{user.phone}}</li>
     </ul>

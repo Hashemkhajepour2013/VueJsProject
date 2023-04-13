@@ -25,7 +25,7 @@ export default {
 
     function getUser() {
       axios
-        .get(`https://jsonplaceholder.typicode.com/users/${route.params.id}`)
+        .get(`https://localhost:7193/api/v1/User/${route.params.id}`)
         .then(function (response) {
           user.value = response.data;
           loading.value = false;
