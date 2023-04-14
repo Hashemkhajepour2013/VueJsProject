@@ -1,13 +1,13 @@
 <template>
-  <div class="col-md-6">
+ <v-container>
+<v-row>
+  <v-col cols="6">
     <h2 class="mb-5">Create Post :</h2>
 
-    <PostForm
-      @formData="createPost"
-      :button-loading="loading"
-      button-text="Create Post"
-    />
-  </div>
+    <PostForm :formData="createPost" />
+  </v-col>
+</v-row>
+</v-container>
 </template>
 
 <script>

@@ -11,7 +11,7 @@
 <script>
 import axios from "axios";
 import { ref } from "vue";
-import UserCardView from "@/components/users/CardView.vue";
+import UserCardView from "../../components/users/CardView.vue";
 import { useRoute } from "vue-router";
 
 export default {
@@ -25,7 +25,7 @@ export default {
 
     function getUser() {
       axios
-        .get(`https://localhost:7193/api/v1/User/${route.params.id}`)
+        .get(`https://jsonplaceholder.typicode.com/users/${route.params.id}`)
         .then(function (response) {
           user.value = response.data;
           loading.value = false;
@@ -41,5 +41,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

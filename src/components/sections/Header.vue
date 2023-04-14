@@ -1,50 +1,24 @@
 <template>
-  <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a
-          class="navbar-brand"
-          href="https://github.com/Hashemkhajepour2013/VueJsProject"
-          >ProjectGitHub</a
-        >
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <router-link to="/" class="nav-link">Home</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/Users" class="nav-link">Users</router-link>
-            </li>
-            <li class="nav-item">
-             <router-link to="/Posts" class="nav-link">Posts</router-link>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
+   <v-toolbar class="d-flex flex-row">
+    <v-row>
+      <v-col cols="6">
+        <v-row>
+          <v-col cols="3">
+            <v-toolbar-title>ProjectGitHub</v-toolbar-title>
+          </v-col>
+          <v-col cols="9">
+            <v-btn variant="outlined" flat to="/" exact class="mr-2">
+            Home
+            </v-btn>
+            <v-btn variant="outlined" flat to="/Users" class="mr-2">
+            Users
+            </v-btn>
+            <v-btn variant="outlined" flat to="/Posts">
+            Posts
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-toolbar>
 </template>
-
-<script>
-export default {
-  name: "header",
-};
-</script>
-
-<style scoped>
-.router-link-active{
-  color: rgba(0, 0, 0, 0.9) !important;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.9) !important;
-}
-</style>

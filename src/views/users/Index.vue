@@ -1,21 +1,17 @@
 <template>
-  <div class="container mt-5">
-    <div class="row g-3">
-      <div v-if="loading" class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div v-else class="col-md-4" v-for="user in users" :key="user.id">
+  <v-container class="mt-5">
+    <v-row>
+      <v-col v-for="user in users" :key="user.id" cols="4">
         <UserCardView :user="user" />
-      </div>
-    </div>
-  <router-view></router-view>
-  </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 import axios from "axios";
 import { ref } from "vue";
-import UserCardView from "@/components/users/CardView.vue";
+import UserCardView from "../../components/users/CardView.vue";
 
 export default {
   components: {
@@ -23,14 +19,12 @@ export default {
   },
   setup() {
     const users = ref([]);
-    const loading = ref(true);
 
     function getUsers() {
       axios
         .get("https://localhost:7193/api/v1/User/get-all")
         .then(function (response) {
           users.value = response.data;
-          loading.value = false;
         })
         .catch(function (error) {
           console.log(error);
@@ -39,7 +33,7 @@ export default {
 
     getUsers();
 
-    return { users, loading};
+    return { users };
   },
 };
 </script>

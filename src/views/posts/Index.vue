@@ -1,30 +1,37 @@
 <template>
-    <div>
-      <router-link class="btn btn-dark" :to="{ name: 'createPost' }"
-        >Create Post</router-link
-      >
-    </div>
-    <div v-if="loading" class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
+  <v-container class="mt-5">
+    <v-btn
+    class="mb-5"
+      rounded="lg"
+      :to="{ name: 'createPost' }"
+      variant="tonal"
+      color="indigo-darken-3"
+    >
+      Create Post
+    </v-btn>
 
-    <div v-else class="col-md-4" v-for="post in posts" :key="post.id">
-      <div class="card">
-        <div class="card-header">
-          <router-link :to="{ name: 'postId', params: { id: post.id } }">
-            {{ post.title }}
-          </router-link>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Body : {{ post.body }}</li>
-        </ul>
-      </div>
-    </div>
+    <v-row>
+      <v-col v-for="post in posts" :key="post.id" cols="4">
+        <v-card variant="outlined">
+          <template v-slot:title>
+            <v-btn
+              :to="{ name: 'postId', params: { id: post.id } }"
+            >
+              {{ post.title }}
+            </v-btn>
+          </template>
+          <template v-slot:text>
+            {{ post.body }}
+          </template>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 import axios from "axios";
-import { ref } from "vue";
+import { ref } from "vue";  
 
 export default {
   setup() {
@@ -33,7 +40,7 @@ export default {
 
     function getPosts() {
       axios
-        .get("https://localhost:7193/api/v1/Post")
+        .get("https://localhost:7193/api/v1/Post/get-all")
         .then(function (response) {
           posts.value = response.data;
           loading.value = false;

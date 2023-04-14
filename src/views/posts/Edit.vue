@@ -1,18 +1,22 @@
 <template>
-  <div v-if="pageLoading" class="spinner-border" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
+   <v-row>
+    <v-col cols="6">
+      <div v-if="pageLoading" class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
 
-  <div v-else class="col-md-6">
-    <h2 class="mb-5">Edit Post :</h2>
+      <div v-else class="col-md-6">
+        <h2 class="mb-5">Edit Post :</h2>
 
-    <PostForm
-      @formData="updatePost"
-      :button-loading="loading"
-      button-text="Edit Post"
-      :post="post"
-    />
-  </div>
+        <PostForm
+          @formData="updatePost"
+          :button-loading="loading"
+          button-text="Edit Post"
+          :post="post"
+        />
+      </div>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

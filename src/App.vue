@@ -1,16 +1,16 @@
 <template>
-  <Header />
-  <router-view />
+  <v-app>
+    <Header />
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
 <script lang="ts">
 import Header from "./components/sections/Header.vue";
+
 export default {
-  name: "App",
-  components: { Header },
+  components: { Header }
 };
 </script>
-
-<style>
-
-</style>

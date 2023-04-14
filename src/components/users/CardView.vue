@@ -1,22 +1,30 @@
 <template>
-  <div class="card">
-    <div class="card-header">
-      <router-link :to="{ name : 'userId' , params: { id: user.id } }">{{ user.name }}</router-link>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">username : {{user.userName}}</li>
-      <li class="list-group-item">Email : {{user.email}}</li>
-      <li class="list-group-item">Phone : {{user.phone}}</li>
-    </ul>
-  </div>
+  <v-card variant="outlined">
+    <template v-slot:title>
+      <v-btn
+        block
+        rounded="lg"
+        :to="{ name: 'userId', params: { id: user.id } }"
+        variant="flat"
+        color="indigo-darken-3"
+      >
+        {{ user.name }}
+      </v-btn>
+    </template>
+    <template v-slot:subtitle>
+      {{ user.username }}
+    </template>
+    <template v-slot:text>
+      {{ user.email }} --
+      {{ user.phone }}
+    </template>
+  </v-card>
 </template>
 
 <script>
 export default {
-    props:{
-        user:Object
-    }
+  props: {
+    user: Object,
+  },
 };
 </script>
-
-<style></style>

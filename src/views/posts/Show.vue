@@ -2,28 +2,26 @@
   <div v-if="loading" class="spinner-border" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
-
-  <div v-else class="col-md-5">
-    <div class="card">
-      <div class="card-header">
-        {{ post.title }}
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Body : {{ post.body }}</li>
-      </ul>
-      <div class="card-footer">
-        <button @click="deletePost" class="btn btn-sm btn-danger me-4">
-          Delete
-        </button>
-        <router-link
-          class="btn btn-sm btn-dark"
-          :to="{ name: 'editPost', params: { id: post.id } }"
-        >
-          Edit
-        </router-link>
-      </div>
-    </div>
-  </div>
+   <v-container>
+    <v-row>
+      <v-col cols="4">
+        <v-card variant="outlined">
+          <template v-slot:title>
+            {{ post.title }}
+          </template>
+          <template v-slot:text>
+            {{ post.body }}
+          </template>
+          <v-card-actions>
+            <v-btn @click="deletePost" variant="outlined" color="red"> Delete </v-btn>
+            <v-btn variant="outlined"
+            :to="{ name: 'editPost', params: { id: route.params.id } }"
+            > Edit </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -40,7 +38,7 @@ export default {
 
     function getPost() {
       axios
-        .get(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`)
+        .get(`https://localhost:7193/api/v1/Post/${route.params.id}`)
         .then(function (response) {
           post.value = response.data;
           loading.value = false;
